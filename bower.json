@@ -1,5 +1,5 @@
 {
-  "name": "webfonts-roboto",
+  "name": "webfonts-open-sans",
   "version": "1.0.0",
   "main": [
     "scss/main.scss",
