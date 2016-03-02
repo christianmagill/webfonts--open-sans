@@ -1,0 +1,67 @@
+$font-path: "../fonts/" !default;
+$open-sans-font-path : $font-path !default;
+
+$webfonts-open-sans-settings: (
+        font-family: 'Open Sans',
+        base-names: (
+                300: (
+                        normal: opensans-light-webfont,
+                        italic: opensans-lightitalic-webfont
+                ),
+                400: (
+                        normal: opensans-regular-webfont,
+                        italic: opensans-italic-webfont
+                ),
+                600: (
+                        normal: opensans-semibold-webfont,
+                        italic: opensans-semibolditalic-webfont
+                ),
+                700: (
+                        normal: opensans-bold-webfont,
+                        italic: opensans-bolditalic-webfont
+                ),
+                800: (
+                        normal: opensans-extrabold-webfont,
+                        italic: opensans-extrabolditalic-webfont
+                ),
+        )
+) !default;
+
+$webfonts-open-sans-include: (
+        300: (normal, italic),
+        400: (normal, italic),
+        600: (normal, italic),
+        700: (normal, italic),
+        800: (normal, italic),
+) !default;
+
+@mixin generate-webfonts-open-sans {
+
+  $font-family: map-get($webfonts-open-sans-settings, font-family);
+  $base-names: map-get($webfonts-open-sans-settings, base-names);
+
+  @each $weight, $styles in $webfonts-open-sans-include {
+    @each $style in $styles {
+      @if (map-has-key($base-names, $weight)) {
+        $base-names-for-given-weight: map-get($base-names, $weight);
+        @if (map-has-key($base-names-for-given-weight, $style)) {
+          $base-name: map-get($base-names-for-given-weight, $style);
+
+          @font-face {
+            font-family: $font-family;
+            src: url('#{$open-sans-font-path}#{$base-name}.eot');
+            src: url('#{$open-sans-font-path}#{$base-name}.eot?#iefix') format('embedded-opentype'),
+            url('#{$open-sans-font-path}#{$base-name}.woff2') format('woff2'),
+            url('#{$open-sans-font-path}#{$base-name}.woff') format('woff'),
+            url('#{$open-sans-font-path}#{$base-name}.ttf') format('truetype');
+            font-weight: $weight;
+            font-style: $style;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@include generate-webfonts-opensans;

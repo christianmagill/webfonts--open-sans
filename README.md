@@ -1,2 +1,2 @@
-# webfonts-open-sans
-Webfont Pack for Open Sans Fonts
+# WebFont Pack for Open Sans Fonts
+Generated from Font Squirrel's WebFont Generator
